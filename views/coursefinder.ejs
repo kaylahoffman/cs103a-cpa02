@@ -1,16 +1,14 @@
 
-
     <div class="jumbotron">
-        <h1>PA03: Course Finder Fall20-Spr21 </h1>
+        <h1>CPA02: Course Finder</h1>
         <p></p>
     </div>
 
     <p class="p-3 m-3 border border-primary bg-light">
-        The goal of this assignment is to write an app that will let
-        students pick their courses for the year. Since we don't have 
-        the data for this year (due to workday issues), we will use the 
-        2020-2021 Academic year data. You must signup or login to see
-        the courses and create your schedule.
+        The goal of this programming assignment is to modify the class app to will let
+        students pick their courses for the year. It uses the course data fin the 21-22 JSON. 
+        You must signup or login to see the courses and create your schedule. I modified it to allow students to see courses
+        that have no prerequisites.
     </p>
     
     <% if (true || loggedIn) {%>  
@@ -19,6 +17,8 @@
               <input type="text" name="subject" 
                      placeholder="e.g. COSI">
             <input type="submit">
+            <input type="checkbox" id="filter" name="filter" value="filter"> <!--Kayla-->
+            <label for="filter"> Only show courses with no prerequisites</label>
         </form>
         <br>
         <form method="post" action="/courses/byInst">
@@ -26,6 +26,8 @@
             <input type="text" name="email" 
                    placeholder="e.g. tjhickey">
             <input type="submit">
+            <input type="checkbox" id="filter" name="filter" value="filter">
+            <label for="filter"> Only show courses with no prerequisites</label>
         </form>
         <br>
         <a href="/schedule/show">Show Schedule</a>

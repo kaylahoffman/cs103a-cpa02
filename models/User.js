@@ -7,9 +7,7 @@ var userSchema = Schema( {
   passphrase: String,
   age: Number,
   class_year: Number,
-  primary_major: String,
-  secondary_major: String,
-  minor: String
+  major: String,
 } );
 
 module.exports = mongoose.model( 'User', userSchema );

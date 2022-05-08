@@ -24,6 +24,7 @@ var courseSchema = Schema( {
     independent_study: Boolean,
     term: Number,
     description: String,
+    prereq: Boolean,
 } );
 
 module.exports = mongoose.model( 'Course', courseSchema );
