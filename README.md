@@ -48,4 +48,4 @@ nodemon
 Additionally, in the Connecting to the Database section of the app.js file, change it to 
 const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
 
-
+https://brandeis.zoom.us/rec/share/8RkumIbaM-oZXprU6YW1lTU4jRMEosK-B9dZnOt88XFyNqwZkR81GVwqt-1CyPWc.WNjQYNUrIhMgDhWP?startTime=1652059406000 
