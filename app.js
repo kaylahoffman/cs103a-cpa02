@@ -37,10 +37,9 @@ const courses = courses2122
 
 const mongoose = require( 'mongoose' );
 
+//I'm using my own database/mongo atlas URL
 const mongodb_URI = process.env.mongodb_URI
 //const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
-//Using my own database/mongo atlas URL
-//const mongodb_URI = 'mongodb+srv://kaylahoffman:kaylahoffmanCS103@cluster0.ofpxf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings
