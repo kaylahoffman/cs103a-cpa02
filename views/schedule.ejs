@@ -1,16 +1,33 @@
-<ul>
-    <% for (course of courses){%>
-        <li> 
-            <a href="/schedule/remove/<%= course._id %>">X</a>
-            <%= course['subject'] %>
-            <%= course.coursenum %>
-            <%= course.name %>
-            <%= course.term %>
-            
-        </li>
-    <% } %>
-</ul>
-
+<!--Modified an EJS page-->
+<h1>This is your course schedule</h1>
+Here are the courses in a table
+<hr>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Remove Course</th>
+                <th>Subject</th>
+                <th>CourseNum</th>
+                <th>Course Title</th>
+                <th>Section #</th>
+                <th>Term</th>
+                <th>Instructor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (course of courses){%>
+            <tr class="mb-2">    
+            <td><a href="/schedule/remove/<%= course._id %>">X</a></td>
+            <td><%= course['subject'] %></td>
+            <td><%= course.coursenum %></td>
+            <td><%= course.name %></td>
+            <td><%= course.section %></td>>
+            <td><%= course.term %></td>
+            <td><%= course['instructor'] %></td>
+            </tr> 
+            <% } %>
+        </tbody>
+</table>
 <!--
     <pre>
         <%= JSON.stringify(courses,null,5) %>

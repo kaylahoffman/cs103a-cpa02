@@ -7,8 +7,7 @@
     <p class="p-3 m-3 border border-primary bg-light">
         The goal of this programming assignment is to modify the class app to will let
         students pick their courses for the year. It uses the course data fin the 21-22 JSON. 
-        You must signup or login to see the courses and create your schedule. I modified it to allow students to see courses
-        that have no prerequisites.
+        You must signup or login to see the courses and create your schedule.
     </p>
     
     <% if (true || loggedIn) {%>  
@@ -17,8 +16,8 @@
               <input type="text" name="subject" 
                      placeholder="e.g. COSI">
             <input type="submit">
-            <input type="checkbox" id="filter" name="filter" value="filter"> <!--Kayla-->
-            <label for="filter"> Only show courses with no prerequisites</label>
+            <input type="checkbox" id="filter" name="filter" value="filter">
+            <label for="filter"> Only show small courses</label>
         </form>
         <br>
         <form method="post" action="/courses/byInst">
@@ -27,7 +26,7 @@
                    placeholder="e.g. tjhickey">
             <input type="submit">
             <input type="checkbox" id="filter" name="filter" value="filter">
-            <label for="filter"> Only show courses with no prerequisites</label>
+            <label for="filter"> Only show small courses</label>
         </form>
         <br>
         <a href="/schedule/show">Show Schedule</a>

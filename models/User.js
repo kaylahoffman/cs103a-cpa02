@@ -1,3 +1,4 @@
+//Modified an existing model to collect more data about a user
 'use strict';
 const mongoose = require( 'mongoose' );
 const Schema = mongoose.Schema;

@@ -24,7 +24,7 @@ var courseSchema = Schema( {
     independent_study: Boolean,
     term: Number,
     description: String,
-    prereq: Boolean,
+    small: Boolean, //added field but didn't need to use it
 } );
 
 module.exports = mongoose.model( 'Course', courseSchema );

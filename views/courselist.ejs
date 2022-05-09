@@ -21,7 +21,7 @@ Here we want a ul list with the instructor, coursenum, title, term
         const semester=['none','Spring 20','Summer 20','Fall 20']
          %>
          <!--only show classes with no prerequisites-->
-        <%if (filter==null||(filter!=null && !course.prereq)) { %> <!--if box not checked or is checked and no prereqs-->
+         <%if (filter==null||(filter!=null&&course.enrolled<30)) { %>
             <tr class="mb-2"> 
                 <td><%= semester[sem]+year %></td>
                 <td>

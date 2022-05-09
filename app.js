@@ -36,8 +36,9 @@ const courses = courses2122
 
 const mongoose = require( 'mongoose' );
 
-//const mongodb_URI = process.env.mongodb_URI
-const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
+const mongodb_URI = process.env.mongodb_URI
+//const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
+//Using my own database/mongo atlas URL
 //const mongodb_URI = 'mongodb+srv://kaylahoffman:kaylahoffmanCS103@cluster0.ofpxf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
@@ -220,10 +221,10 @@ app.get("/demo",
     return `${meetingType}: ${days.join(",")}: ${min2HourMin(start)}-${min2HourMin(end)} ${location}`
   }
 
-  function prereqs(desc, det){
-    return (desc.includes('Prerequisite') || det.includes('Prerequisite'))
+  function checkSmall(enr){
+    return enr < 30
   }
-  
+
   /* ************************
     Loading (or reloading) the data into a collection
      ************************ */
@@ -238,7 +239,7 @@ app.get("/demo",
         const num = getNum(coursenum);
         course.num=num
         course.suffix = coursenum.slice(num.length)
-        course.prereq = prereqs(description, details)
+        course.small = checkSmall(enrolled)
         await Course.findOneAndUpdate({subject,coursenum,section,term},course,{upsert:true})
       }
       const num = await Course.find({}).countDocuments();
@@ -404,24 +405,38 @@ app.get("/demo",
   )
 
 /*
-  aggregation 
+  Created my own aggregation that finds:
+  the largest classes by enrollement in each department, sorted in descending order, excluding independent studies
 */
 const aggr =
+  [
+    {
+      '$match': {
+        'independent_study': false
+      }
+    }, {
+      '$group': {
+        '_id': '$subject', 
+        'maxEnr': {
+          '$max': '$enrolled'
+        }
+      }
+    }, {
+      '$sort': {
+        'maxEnr': -1
+      }
+    }
+  ]
 
-    [
-      
-    ]
-
-
-
-
-app.get('/aggr',
+/*
+This sends the results of the aggregation
+Can be accessed through index.ejs
+*/
+app.get('/aggregation',
   async (req,res,next) => {
    try {
     const enrollments = 
-      await Course.aggregate(
-        aggr
-      )
+      await Course.aggregate(aggr)
     res.json(enrollments)
    } catch(error) {
      next(error)
